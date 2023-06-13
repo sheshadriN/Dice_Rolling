@@ -7,6 +7,10 @@ let current_0 = document.querySelector('#current--0');
 let current_1 = document.querySelector('#current--1');
 let dice = document.querySelector('.dice');
 
+
+let btnsOpenModal = document.querySelectorAll('.modal');
+
+
 //intial
 dice.classList.add('hidden');
 score_0.textContent = '0';
@@ -24,7 +28,7 @@ document.querySelector('.btn--roll').addEventListener('click', function() {
         console.log('button clicked');
         if (random !== 1) {
             current += random;
-            score[activeplayer] += random;
+
             console.log(score);
             document.querySelector('#current--' + activeplayer).textContent = current;
             dice.src = 'dice-' + random + '.png';
@@ -42,14 +46,15 @@ document.querySelector('.btn--roll').addEventListener('click', function() {
     }
 });
 document.querySelector('.btn--hold').addEventListener('click', function() {
-
+    score[activeplayer] += current;
+    current = 0;
     if (playing) {
         console.log("RANDOM" + random);
-        current = 0;
+
         console.log("current" + score[activeplayer]);
 
         document.querySelector('#score--' + activeplayer).textContent = score[activeplayer];
-        if (score[activeplayer] >= 20) {
+        if (score[activeplayer] >= 30) {
             document.querySelector('.player--' + activeplayer).classList.add('player--winner');
             document.querySelector('.player--' + activeplayer).classList.remove('player--active');
             playing = false;
